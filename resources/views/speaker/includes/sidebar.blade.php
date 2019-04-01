@@ -50,7 +50,7 @@ $sidebarMenus = [
         'icon' => 'fa fa-users'
     ],
 	'webinar-user-register' => [
-        'text' => 'Attendies',
+        'text' => 'Webinar  Attendies',
         'routeName' => 'speaker.webinar-user-register',
         'permissionKey' => [],
         'icon' => 'fa fa-users'

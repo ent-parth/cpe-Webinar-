@@ -16,15 +16,15 @@
               <tr class="heading">
                 <?php /*?><th class="listing-id"><input type="checkbox" id="check-all" name="check-all"></th><?php */?>
                 <th width="5%">#</th>
-                <th width="15%">Attendee name</th>
-                <th width="10%"> Attendee email </th>
-                <th width="10%"> Webinar name </th>
-                <th width="10%">Webinar type</th>
+                <th width="15%">Attendee Name</th>
+               <!-- <th width="10%"> Attendee Email </th>-->
+                <th width="10%"> Webinar Name </th>
+                <th width="10%">Webinar Type</th>
                 <th width="10%">Webinar Fee</th>
                 <th width="10%">Webinar Date</th>
-                <th width="10%">Registered date</th>
-                <th width="10%">Join link </th>
-                <th width="10%">Payment Status</th>
+                <th width="13%">Registered Date</th>
+                <!--<th width="10%">Join link </th>
+                <th width="10%">Payment Status</th>-->
                 <?php /*?><th width="20%"> Rgistration Status </th><?php */?>
                 <th class="listing-action">Action</th>
               </tr>
@@ -35,7 +35,9 @@
               <tr class="filter">
                 <td></td>
                 <td><input type="text" class="form-control form-filter input-sm" name="name" id="name" value="@if(isset($_REQUEST['name']) && !empty($_REQUEST['name'])){{$_REQUEST['name']}}@endif"></td>
-                <td><input type="text" class="form-control form-filter input-sm" name="email" id="email" value="@if(isset($_REQUEST['email']) && !empty($_REQUEST['email'])){{$_REQUEST['email']}}@endif"></td>
+            
+                  <td><input type="text" class="form-control form-filter input-sm" name="email" id="email" value="@if(isset($_REQUEST['email']) && !empty($_REQUEST['email'])){{$_REQUEST['email']}}@endif"></td>
+                
                 <td><input type="text" class="form-control form-filter input-sm" name="title" id="title" value="@if(isset($_REQUEST['title']) && !empty($_REQUEST['title'])){{$_REQUEST['title']}}@endif"></td>
                 <td><select name="webinar_type" id="webinar_type" class="form-control">
                     <option value="">All</option>
@@ -51,9 +53,11 @@
                   </select></td>
                 <td></td>
                 <td><input type="text" class="form-control form-filter input-sm" name="recorded_date" id="recorded_date" value="@if(isset($_REQUEST['recorded_date']) && !empty($_REQUEST['recorded_date'])){{$_REQUEST['recorded_date']}}@endif" autocomplete="off"></td>
-                <td><input type="text" class="form-control form-filter input-sm" name="created_at" id="created_at" value="@if(isset($_REQUEST['created_at']) && !empty($_REQUEST['created_at'])){{$_REQUEST['created_at']}}@endif" autocomplete="off"></td>
-                <td></td>
-                <td></td>
+               <?php
+              /* <td><input type="text" class="form-control form-filter input-sm" name="created_at" id="created_at" value="@if(isset($_REQUEST['created_at']) && !empty($_REQUEST['created_at'])){{$_REQUEST['created_at']}}@endif" autocomplete="off"></td>*/
+                ?>
+               <!-- <td></td>
+                <td></td>-->
                 <?php /*?><td>{{ Form::select('status', $statusList, null, ["id" => "status", "placeholder" => "Select Status", 'class' => 'form-control select2 select-search form-filter-dropdown', 'select'=>'select']) }}</td><?php */?>
                 <td><button class="btn btn-sm btn-default filter-submit" type="submit" title="Search"><i class="fa fa-search"></i> Search</button>
                   <a href="/webinar-user-register" class="btn btn-sm btn-default"><i class="fa fa-times"></i> Reset</a></td>

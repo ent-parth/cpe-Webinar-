@@ -119,8 +119,8 @@ Route::group(['middleware' => 'disablepreventback'],function(){
             Route::post('/speakers/get-list', 'SpeakerController@getList')->name('speakers-list')->middleware('permission:speaker_view');
             // Route::get('/speakers/add', 'SpeakerController@create')->name('create.speaker')->middleware('check-permission:manage-speakers')->middleware('permission:speaker_view');
             // Route::post('/speakers/add', 'SpeakerController@store')->name('store.speaker')->middleware('check-permission:manage-speakers')->middleware('permission:speaker_view');
-            Route::get('/speakers/edit/{id}', 'SpeakerController@edit')->name('edit.speaker')->middleware('permission:speaker_edit');
-            Route::post('/speakers/edit/{id}', 'SpeakerController@update')->name('update.speaker')->middleware('permission:speaker_edit');
+            Route::get('/speakers/edit', 'SpeakerController@edit')->name('edit.speaker')->middleware('permission:speaker_edit');
+            Route::post('/speakers/edit', 'SpeakerController@update')->name('update.speaker')->middleware('permission:speaker_edit');
             Route::get('/speakers/view/{id}', 'SpeakerController@show')->name('show.speaker')->middleware('permission:speaker_view');
             Route::get('/speakers/delete/{id}', 'SpeakerController@destroy')->name('delete.speaker')->middleware('permission:speaker_delete');
             Route::post('/speakers/delete-all', 'SpeakerController@destroyAll')->name('delete-all.speaker')->middleware('permission:speaker_delete');
@@ -469,8 +469,8 @@ Route::group(['middleware' => 'disablepreventback'],function(){
             // Accounts
             Route::group(['namespace' => 'Company'], function() {
                 Route::get('/dashboard', 'AccountsController@dashboard')->name('company.dashboard');
-                Route::get('/edit-profile', 'AccountsController@edit')->name('company-edit');
-                Route::post('/edit-profile', 'AccountsController@update')->name('company-edit-profile');
+                Route::get('/edit-profile/{id}', 'AccountsController@edit')->name('company-edit');
+                Route::post('/edit-profile/{id}', 'AccountsController@update')->name('company-edit-profile');
             });
 			
             Route::get('/logout', 'CompanyAuth\LoginController@logout')->name('company.logout');
@@ -575,19 +575,10 @@ Route::group(['middleware' => 'disablepreventback'],function(){
 	}); 
 
 
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/speakers/add', 'SpeakerController@create')->name('create.speaker');
 Route::post('/speakers/add', 'SpeakerController@store')->name('store.speaker');
 Route::post('/states/get-state', 'StateController@getState')->name('get_state.state');
 Route::post('/cities/get-city', 'CityController@getCity')->name('delete.city');
 Route::post('/speakers/check_email', 'SpeakerController@checkEmail')->name('checkemail.speaker');
+
+

@@ -23,6 +23,7 @@ class CreateSpeakersTable extends Migration
             $table->string('password');
             $table->string('contact_no', 25);
             $table->string('avatar', 255);
+            $table->string('instructorbio', 255);
             $table->integer('country_id');
             $table->integer('state_id');
             $table->integer('city_id');

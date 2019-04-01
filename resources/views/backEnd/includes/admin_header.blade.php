@@ -51,14 +51,15 @@
   @endif<?php */?>
       <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <img src="{{asset(Auth::guard('administrator')->user()->avatar_url)}}" class="user-image" alt="User Image">
+          <img src="/images/default-avatar.png" class="user-image" alt="User Image">
+       
           <span class="hidden-xs">{{  Auth::guard('administrator')->user()->full_name ?: ''}}</span>
         </a>
         <ul class="dropdown-menu">
           <!-- User image -->
           <li class="user-header">
-            <img src="{{asset(Auth::guard('administrator')->user()->avatar_url)}}" class="img-circle" alt="User Image">
-
+            <img src="/images/default-avatar.png" class="img-circle" alt="User Image">
+          
             <p>
               {{  Auth::guard('administrator')->user()->full_name ?: ''}}
               <!-- <small>Member since Nov. 2012</small> -->
@@ -82,6 +83,7 @@
           <li class="user-footer">
             <div class="pull-left">
               <a href="{{route('administrator.edit.form')}}" class="btn btn-default btn-flat">Profile</a>
+             
             </div>
             <div class="pull-right">
               <a href="{{ route('administrator.logout') }}" class="btn btn-default btn-flat">Sign out</a>

@@ -13,9 +13,10 @@
             <thead>
               <tr class="heading">
                 <th width="20%">Name</th>
+               <th width="10%">Speaker</th>
                 <th width="10%">Date</th>
                 <th width="10%">Time in UTC</th>
-                <th width="15%">Invitation Status</th>
+                <th width="15%">Status</th>
                 <th width="10%">Link</th>
                 <th class="listing-action">Action</th>
               </tr>
@@ -25,6 +26,7 @@
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <tr class="filter">
                 <td><input type="text" class="form-control form-filter input-sm" name="title" id="title" value="@if(isset($_REQUEST['title']) && !empty($_REQUEST['title'])){{$_REQUEST['title']}}@endif"></td>
+                <td><center>--</center></td>
                 <td><input type="text" class="form-control form-filter input-sm" name="recorded_date" id="recorded_date" value="@if(isset($_REQUEST['recorded_date']) && !empty($_REQUEST['recorded_date'])){{$_REQUEST['recorded_date']}}@endif" autocomplete="off"></td>
                 <td></td>
                 <td><select name="status" id="status" class="form-control select2 select-search form-filter-dropdown" >

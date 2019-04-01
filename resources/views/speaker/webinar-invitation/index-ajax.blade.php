@@ -1,6 +1,9 @@
 @forelse($webinarInvitation as $webinarInvitationList)
 <tr id="filter_tr{{$webinarInvitationList->id}}">
   <td>{{$webinarInvitationList->title}}</td>
+  <td><center>
+   -- 
+  </center></td>
   <td>{{ date("F j Y", strtotime($webinarInvitationList->recorded_date)) }}</td>
   <td>{{date("g:i A",strtotime($webinarInvitationList->start_time)).' - '.date("g:i A",strtotime($webinarInvitationList->end_time))}}</td>
   <td>@if ($webinarInvitationList->start_time < Carbon\Carbon::now()->addHours(2) && $webinarInvitationList->status == "pending") Expired @else   {{$webinarInvitationList->status}} @endif</td>

@@ -9,12 +9,13 @@
           <h3 class="box-title">Archived Webinars</h3>
         </div>
         <div class="box-body">
-          <table id="webinar-list" class="table table-bordered table-hover datatable-highlight">
+          <table id="webinar-list"  class="table table-bordered table-hover datatable-highlight">
             <thead>
               <tr class="heading">
                 <th width="20%">Name</th>
                 <th width="10%">Webinar Date</th>
                 <th width="15%">Status</th>
+                <th width="13%">Type</th>
                 <th class="listing-action">Action</th>
               </tr>
             </thead>
@@ -36,6 +37,7 @@
                     Draft
                     </option>
                   </select></td>
+                  <td><center>--</center></td>
                 <td><button class="btn btn-sm btn-default filter-submit" type="submit" title="Search"><i class="fa fa-search"></i> Search</button>
                   <a href="/archived-webinar" class="btn btn-sm btn-default"><i class="fa fa-times"></i> Reset</a></td>
               </tr>

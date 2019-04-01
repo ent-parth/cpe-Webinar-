@@ -20,7 +20,7 @@ class Speaker extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'company_id', 'first_name', 'last_name', 'email', 'password', 'avatar', 'status', 'contact_no', 'country_id', 'state_id', 'city_id', 'zipcode', 'expertise', 'about_speaker', 'about_company', 'created_by', 'modified_by' 
+        'company_id', 'first_name', 'last_name', 'email', 'password', 'avatar', 'instructorbio', 'status', 'contact_no', 'country_id', 'state_id', 'city_id', 'zipcode', 'expertise', 'about_speaker', 'about_company', 'created_by', 'modified_by' 
     ];
 
     /**
@@ -67,6 +67,20 @@ class Speaker extends Authenticatable
             return Storage::url(config('constants.IMAGE_PATH.GENERAL_IMAGE') . config('constants.DEFAULT_IMAGE_NAME.AVATAR'));
         }
     }
+    public function getInstructorBioUrlAttribute($image = null) {
+        if ($image === null) {
+            $image = !empty($this->attributes['instructorbio']) ? $this->attributes['instructorbio'] : '';
+        }
+
+        $imagePath = config('constants.IMAGE_PATH.SPEAKER_INSTRUCTORBIO') . $image;
+
+        $disk = Storage::disk(config('constants.IMAGE_PATH.DRIVER'));
+        if (isset($image) && !empty($image) && $disk->exists($imagePath)) {
+            return Storage::url(config('constants.IMAGE_PATH.SPEAKER_INSTRUCTORBIO') . $image);
+        } else {
+            return Storage::url(config('constants.IMAGE_PATH.GENERAL_IMAGE') . config('constants.DEFAULT_IMAGE_NAME.INSTRUCTORBIO'));
+        }
+    }
 
     /**
      * Upload the logo image and get its name
@@ -78,6 +92,13 @@ class Speaker extends Authenticatable
             $this->attributes['avatar'] = CommonHelper::saveImage(config('constants.IMAGE_PATH.SPEAKER_AVATAR'), $avatar);
 		} else {
 		    $this->attributes['avatar'] = $this->avatar;
+        }
+    }
+    public function setInstructorBioAttribute($instructorbio)
+    {   if (isset($instructorbio) && !empty($instructorbio)) {
+            $this->attributes['instructorbio'] = CommonHelper::saveImage(config('constants.IMAGE_PATH.SPEAKER_INSTRUCTORBIO'), $instructorbio);
+		} else {
+		    $this->attributes['instructorbio'] = $this->instructorbio;
         }
     }
     

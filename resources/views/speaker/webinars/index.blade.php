@@ -16,6 +16,7 @@
                 <th width="10%">Fee</th>
                 <th width="10%">Date</th>
                 <th width="10%">Time</th>
+                <!--<th width="10%">Presentation Length(Minutes)</th> -->
                 <th width="15%">Status</th>
                 <th class="listing-action">Action</th>
               </tr>
@@ -36,6 +37,7 @@
                   </select><?php */?>
                   <input type="text" placeholder="date" autocomplete="off" class="form-control form-filter input-sm" name="recorded_date" id="recorded_date" value="@if(isset($_REQUEST['recorded_date']) && !empty($_REQUEST['recorded_date'])){{$_REQUEST['recorded_date']}}@endif"></td>
                 <td></td>
+               <!-- <td><center>-</center></td>-->
                 <td><select name="status" id="status" class="form-control form-filter input-sm search-dropdown">
                     <option value="">Select Status</option>
                     <option @if(isset($_REQUEST['status']) && 'active' == $_REQUEST['status']) selected="selected" @endif value="active">

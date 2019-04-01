@@ -14,8 +14,8 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="{{asset( Auth::guard('speaker')->user()->avatar_url )}}" alt="User profile picture">
-
+              <img class="profile-user-img img-responsive img-circle" src="  ../images/default-avatar.png" alt="User profile picture">
+            
               <h3 class="profile-username text-center">{{ Auth::guard('speaker')->user()->full_name ?: ''}}</h3>
 
               <p class="text-muted text-center">{{Auth::guard('speaker')->user()->company->name}}</p>
@@ -121,6 +121,16 @@
 
                                 @if ($errors->has('avatar'))
                                     <label class="validation-invalid-label">{{ $errors->first('avatar') }}</label>                
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="instructorbio">Instructor Bio</label>
+                            <div class="col-md-10">
+                                  <input type="file" name="instructorbio" id="instructorbio" class='form-control'>
+
+                                @if ($errors->has('instructorbio'))
+                                    <label class="validation-invalid-label">{{ $errors->first('instructorbio') }}</label>                
                                 @endif
                             </div>
                         </div>
@@ -336,6 +346,12 @@
                         normalizer: function(value) {
                             return $.trim(value);
                         }
+                    },
+                    instructorbio: {
+                        instructorbioExtension:"jpg,png,jpeg,gif",
+                        normalizer: function(value) {
+                            return $.trim(value);
+                        }
                     }
                 },
                 messages: {
@@ -479,10 +495,15 @@
                 rules: {
                     avatar: {
                         fileExtension:"jpg,png,jpeg,gif"
+                    },
+                    instructorbio:{
+                        fileExtension:"jpg,png,jpeg,gif"
                     }
                 },
                 messages: {
                     avatar: {
+                    },
+                    instructorbio:{
                     },
                 },
                 errorPlacement: function (error, element) {
@@ -492,7 +513,10 @@
                     } else if (element.attr("name") == "avatar") {
                         console.log(3);
                         error.insertAfter(element.parent("div").parent().parent().parent());
-                    } else {
+                    } else if(element.attr("name") == "instructorbio"){
+                        console.log(3);
+                        error.insertAfter(element.parent("div").parent().parent().parent());
+                    }else {
                         console.log(4);
                         error.insertAfter(element);
                     }
@@ -522,6 +546,9 @@
                         console.log(1);
                         error.appendTo(element.parents('.form-check').parent());
                     } else if (element.attr("name") == "avatar") {
+                        console.log(3);
+                        error.insertAfter(element.parent("div").parent().parent().parent());
+                    }else if(element.attr("name") == "instructorbio"){
                         console.log(3);
                         error.insertAfter(element.parent("div").parent().parent().parent());
                     } else {
@@ -562,6 +589,25 @@
         }, 'Avatar size must 2mb or below.');
         jQuery.validator.addMethod("avatarExtension", function (value, element) {
             var name = $("#avatar").val();
+            if (name.trim() !== '') {
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                return (!allowedExtensions.exec(name)) ? false : true;
+            } else {
+                return true;
+            }
+        }, 'Image must be in jpg, jpeg, png or gif format.');
+        jQuery.validator.addMethod("instructorbioSize", function (value, element) {
+            var instructorbioName = $("#instructorbio").val();
+            if (instructorbioName != '') {
+                var size = ($("#instructorbio")[0].files[0].size / 1024 / 1024).toFixed(2);
+                if (size > 2) {
+                    return false;
+                }
+                return true;
+            }
+        }, 'Instructorbio size must 2mb or below.');
+        jQuery.validator.addMethod("instructorbioExtension", function (value, element) {
+            var name = $("#instructorbio").val();
             if (name.trim() !== '') {
                 var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
                 return (!allowedExtensions.exec(name)) ? false : true;

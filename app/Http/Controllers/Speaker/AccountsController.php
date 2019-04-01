@@ -89,7 +89,7 @@ class AccountsController extends Controller
             $request->session()->flash('error', 'Profile not updated successfully.');
         }
     }
-
+    
     /**
      * Upload avtar
      * @param Array $avatar
@@ -105,6 +105,28 @@ class AccountsController extends Controller
     public function deleteAvatar($avatar = null)
     {
         $imagePath = config('constants.IMAGE_PATH.AVATAR') . $avatar;
+        $disk = Storage::disk(config('constants.IMAGE_PATH.DRIVER'));
+        if ($disk->exists($imagePath)) {
+            $disk->delete($imagePath);
+        }
+
+        return true;
+    }
+    /**
+     * Upload avtar
+     * @param Array $instructorbio
+     * @return bool
+     */
+    public function saveInstructorBio($instructorbio = [])
+    {
+        $name = Storage::disk(config('constants.IMAGE_PATH.DRIVER'))->put(config('constants.IMAGE_PATH.INSTRUCTORBIO'), $instructorbio);
+
+        return ($name) ? $instructorbio->hashName() : false;
+    }
+
+    public function deleteInstructorBio($instructorbio = null)
+    {
+        $imagePath = config('constants.IMAGE_PATH.INSTRUCTORBIO') . $instructorbio;
         $disk = Storage::disk(config('constants.IMAGE_PATH.DRIVER'));
         if ($disk->exists($imagePath)) {
             $disk->delete($imagePath);

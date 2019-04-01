@@ -1,0 +1,9 @@
+.anyKindOfMesss {
+  left: auto;
+  max-width: 100%;
+  position: fixed;
+  right: 30px;
+  top: 120px;
+  width: 450px;
+  z-index: 9999;
+}

@@ -1,0 +1,16 @@
+@charset "utf-8";
+.welcome-section{background:url(../images/bg/4.jpg); background-size:cover; background-position:center; background-repeat: no-repeat;padding-top:0; position: relative; z-index: 1; height: 100vh;}
+.welcome-section:before{content: ""; position: absolute; left: 0; top: 0; z-index: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7);}
+.welcome-table{width: 100%; height: 100%; display: table;}
+.welcome-cell{vertical-align: middle; display: table-cell;}
+.welcome-col img{border: 4px solid #96c346; position: relative; z-index: 2;}
+#welcome-video{background-color:rgba(0,0,0,0.5);}
+.mbYTP_wrapper::after {
+  background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

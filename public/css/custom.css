@@ -1,0 +1,84 @@
+th.listing-id{
+    width: 5% !important;
+}
+th.listing-action{
+    width: 20% !important;
+}
+.validation-invalid-label, .validation-valid-label{
+    font-size: 1.2rem !important;
+}
+.validation-invalid-label:before, .validation-valid-label:before {
+    font-size: 1.3rem !important;
+}
+.btn-group-sm>.btn, .btn-sm {
+    margin-left: 4px !important;
+}
+.modal-backdrop {
+	z-index: 1029;
+}
+.select2 {
+	width: 100% !important;
+}
+.required {
+	color: red !important;
+}
+.register-box {
+    width: 86%;
+    margin: 0;
+    margin-left: 7% !important;
+    margin-right: 7% !important;
+}
+.dataTables_length select {
+    height: 3.25003rem;
+    font-size: 1.5rem;
+}
+.has-feedback label~.form-control-feedback {
+    top: 0;
+}
+.note-label {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    display: block;
+    color: #f44336;
+    position: relative;
+    padding-left: 1.625rem;
+    font-size: 1.2rem !important;
+    margin-left: -15px;
+}
+.note-label:before {
+    font-family: icomoon;
+    font-size: 1rem;
+    position: absolute;
+    top: .12502rem;
+    left: 0;
+    display: inline-block;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+<!--added by twocompo-->
+
+.dataTable thead .sorting_asc::after,
+.dataTable thead .sorting::before,
+.dataTable thead .sorting::after{display:none !important; opacity:0 !important;}
+.dataTable thead .sorting_asc,
+.dataTable thead .sorting,
+.dataTable thead .sorting{pointer-events:none;}
+.dataTables_info{display:none;}
+.dataTables_length{display:none;}
+	
+	
+	
+.pagination > li:first-child > a,
+.pagination > li:first-child > span{border:none;}
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover{background-color:#37474f;  border-color:transparent; border-radius:0.1875rem;}
+.pagination > li > a{background-color:transparent; border:none;}
+.pagination > li > a,
+.pagination > li > span{padding:5px 8px; border:none;}	
+

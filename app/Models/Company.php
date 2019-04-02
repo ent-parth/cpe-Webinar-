@@ -18,6 +18,7 @@ class Company extends Model
         'id','person_name','person_contact_number','email', 'name', 'logo', 'website', 'contact_number', 'description', 'status', 'country_id', 'state_id', 'city_id', 'created_by', 'modified_by'
     ];
 
+
     public function country() {
         return $this->belongsTo(Country::class);
     }
@@ -84,5 +85,8 @@ class Company extends Model
     public function speaker()
     {
         return $this->hasMany(Speaker::class);
+    }
+    static function getCompanyArray() {
+        return Company::select('id', 'name')->get()->toArray();
     }
 }

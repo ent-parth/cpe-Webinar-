@@ -13,9 +13,10 @@
         <div class="col-md-3">
           <!-- Profile Image -->
           <div class="box box-primary">
-            <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="{{asset( Auth::guard('speaker')->user()->avatar_url )}}" alt="User profile picture">
-            
+        <div class="box-body box-profile">
+
+           <img class="profile-user-img img-responsive img-circle" src="{{asset(  Auth::guard('speaker')->user()->avatar_url )}}" alt="User profile picture">
+
               <h3 class="profile-username text-center">{{ Auth::guard('speaker')->user()->full_name ?: ''}}</h3>
 
               <p class="text-muted text-center">{{Auth::guard('speaker')->user()->company->name}}</p>
@@ -78,11 +79,12 @@
                         <div class="form-group">
                                 <label class="col-md-2 control-label"> Company <span aria-required="true" class="required"> * </span></label>
                                 <div class="col-md-10">
-                                    {{ Form::select('company_id', [], null, ["id" => "company_id", "placeholder" => "", 'class' => 'form-control','aria-invalid' => 'false']) }}
-    
-                                    @if ($errors->has('company_id'))
-                                    <label class="validation-invalid-label">{{ $errors->first('company_id') }}</label>                
-                                    @endif
+                                        {{ Form::select('company_id',$company, null, ["id" => "company_id", "placeholder" => "Select Country", 'class' => 'form-control']) }}
+
+                                        @if ($errors->has('company_id'))
+                                        <label class="validation-invalid-label">{{ $errors->first('company_id') }}</label>                
+                                        @endif
+                                     
                                 </div>
                             </div>
                         <div class="form-group">
@@ -95,6 +97,7 @@
                                 @endif
                             </div>
                         </div>
+                     
                         <div class="form-group">
                             <label class="col-md-2 control-label"> Experience Year/Month <span aria-required="true" class="required"></span></label>
                             <div class="col-md-10 exp">
@@ -102,15 +105,17 @@
                                 {{ Form::text('experiencemonth', Auth::guard('speaker')->user()->experiencemonth, array('id' => 'experiencemonth', 'class' => 'form-control', 'placeholder' => __('Total Months'))) }}  
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="col-md-2 control-label">  Qualification <span aria-required="true" class="required"></span></label>
                             <div class="col-md-10"> 
-                                    <textarea id="qualification" name="qualification" class="col-md-12">{{Auth::guard('speaker')->user()->qualification ?? ''}}</textarea>
+                                    <textarea id="qualification" name="qualification" class="col-md-12">{{ Auth::guard('speaker')->user()->qualification ?? ''}}</textarea>
                                 @if ($errors->has('qualification'))
                                 <label class="validation-invalid-label">{{ $errors->first('qualification') }}</label>                
                                 @endif
                             </div>
                         </div>
+               
                         <div class="form-group">
                             <label class="col-md-2 control-label"> State <span aria-required="true" class="required"> * </span></label>
                             <div class="col-md-10">

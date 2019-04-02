@@ -53,6 +53,7 @@ return [
             'driver' => 'session',
             'provider' => 'company',
         ]
+        
     ],
     /*
       |--------------------------------------------------------------------------
@@ -86,7 +87,7 @@ return [
 		'company' => [
             'driver' => 'eloquent',
             'model' => App\Models\Companies::class,
-        ]
+        ],
 
     // 'users' => [
     //     'driver' => 'database',

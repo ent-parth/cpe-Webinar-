@@ -20,7 +20,7 @@ class Speaker extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'company_id', 'first_name', 'last_name', 'email', 'password', 'avatar', 'instructorbio', 'status', 'contact_no', 'country_id', 'state_id', 'city_id', 'zipcode', 'expertise', 'about_speaker', 'about_company', 'created_by', 'modified_by' 
+        'company_id', 'first_name', 'last_name', 'email', 'password', 'avatar', 'instructorbio', 'status', 'contact_no', 'country_id', 'experienceyear', 'experiencemonth', 'qualification', 'state_id', 'city_id', 'zipcode', 'expertise', 'about_speaker', 'about_company', 'created_by', 'modified_by' 
     ];
 
     /**

@@ -362,6 +362,7 @@ Route::group(['middleware' => 'disablepreventback'],function(){
             // Accounts
             Route::group(['namespace' => 'Speaker'], function() {
                 Route::get('/dashboard', 'AccountsController@dashboard')->name('speaker.dashboard');
+
                 Route::get('/edit-profile', 'AccountsController@showEditForm')->name('speaker.edit.form');
                 Route::post('/edit-profile', 'AccountsController@editProfile')->name('speaker.edit.profile');
                 Route::post('/account/check_email', 'AccountsController@checkEmail')->name('speaker.checkemail');

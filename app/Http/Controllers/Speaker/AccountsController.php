@@ -43,11 +43,11 @@ class AccountsController extends Controller
     public function showEditForm()
     {
         $countries = \App\Models\Country::getCountry();
+        $company = \App\Models\Company::getCompany();
         config(['app.name' => 'Edit Profile']);
-
-        return view('speaker.accounts.edit_profile', compact('countries'));
+      
+        return view('speaker.accounts.edit_profile', compact('countries','company'));
     }
-
     public function editProfile(Request $request)
     {
         try {
@@ -89,7 +89,27 @@ class AccountsController extends Controller
             $request->session()->flash('error', 'Profile not updated successfully.');
         }
     }
-    
+    public function profile()
+    {
+        return view('speaker.edit.form', array('speakers' => Auth::speakers()) );
+        //return view('speaker.edit.form', aaray('user' => Auth::user()) );
+    }
+    public function update_avatar(Request $request){
+
+    	// Handle the user upload of avatar
+    	if($request->hasFile('avatar')){
+    		$avatar = $request->file('avatar');
+    		$filename = time() . '.' . $avatar->getClientOriginalExtension();
+    		Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename ) );
+
+    		$user = Auth::user();
+    		$user->avatar = $filename;
+    		$user->save();
+    	}
+
+    	return view('profile', array('user' => Auth::user()) );
+
+    }
     /**
      * Upload avtar
      * @param Array $avatar
@@ -105,28 +125,6 @@ class AccountsController extends Controller
     public function deleteAvatar($avatar = null)
     {
         $imagePath = config('constants.IMAGE_PATH.AVATAR') . $avatar;
-        $disk = Storage::disk(config('constants.IMAGE_PATH.DRIVER'));
-        if ($disk->exists($imagePath)) {
-            $disk->delete($imagePath);
-        }
-
-        return true;
-    }
-    /**
-     * Upload avtar
-     * @param Array $instructorbio
-     * @return bool
-     */
-    public function saveInstructorBio($instructorbio = [])
-    {
-        $name = Storage::disk(config('constants.IMAGE_PATH.DRIVER'))->put(config('constants.IMAGE_PATH.INSTRUCTORBIO'), $instructorbio);
-
-        return ($name) ? $instructorbio->hashName() : false;
-    }
-
-    public function deleteInstructorBio($instructorbio = null)
-    {
-        $imagePath = config('constants.IMAGE_PATH.INSTRUCTORBIO') . $instructorbio;
         $disk = Storage::disk(config('constants.IMAGE_PATH.DRIVER'));
         if ($disk->exists($imagePath)) {
             $disk->delete($imagePath);

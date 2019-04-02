@@ -22,9 +22,12 @@ class CreateSpeakersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('contact_no', 25);
-            $table->string('avatar', 255);
+            $table->string('avatar', 255)->default('../images/default-avatar.png');
             $table->string('instructorbio', 255);
             $table->integer('country_id');
+            $table->string('experienceyear',10);
+            $table->string('experiencemonth',10);
+            $table->string('qualification',255);
             $table->integer('state_id');
             $table->integer('city_id');
             $table->string('zipcode', 10);

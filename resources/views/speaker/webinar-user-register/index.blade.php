@@ -23,8 +23,8 @@
                 <th width="10%">Webinar Fee</th>
                 <th width="10%">Webinar Date</th>
                 <th width="13%">Registered Date</th>
-                <!--<th width="10%">Join link </th>
-                <th width="10%">Payment Status</th>-->
+                <th width="10%">Join link </th>
+                <th width="10%">Payment Status</th>
                 <?php /*?><th width="20%"> Rgistration Status </th><?php */?>
                 <th class="listing-action">Action</th>
               </tr>
@@ -56,8 +56,8 @@
                <?php
               /* <td><input type="text" class="form-control form-filter input-sm" name="created_at" id="created_at" value="@if(isset($_REQUEST['created_at']) && !empty($_REQUEST['created_at'])){{$_REQUEST['created_at']}}@endif" autocomplete="off"></td>*/
                 ?>
-               <!-- <td></td>
-                <td></td>-->
+               <td></td>
+                <td></td>
                 <?php /*?><td>{{ Form::select('status', $statusList, null, ["id" => "status", "placeholder" => "Select Status", 'class' => 'form-control select2 select-search form-filter-dropdown', 'select'=>'select']) }}</td><?php */?>
                 <td><button class="btn btn-sm btn-default filter-submit" type="submit" title="Search"><i class="fa fa-search"></i> Search</button>
                   <a href="/webinar-user-register" class="btn btn-sm btn-default"><i class="fa fa-times"></i> Reset</a></td>

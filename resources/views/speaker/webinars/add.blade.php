@@ -1,4 +1,14 @@
-﻿@extends('speaker.layouts.speaker_app')
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+@extends('speaker.layouts.speaker_app')
 @section('content')
 <section class="content-header">
   <h1> Add Webinar <span class="pull-right small"><a href="/webinar"><b>List view</b></a></span></h1>
@@ -66,6 +76,42 @@
                   <label class="control-label"> CPE Credits <span aria-required="true" class="requireds"> * </span></label>
                   <input type="text" placeholder="CPE Credit" name="cpa_credit" id="cpa_credit" min="1" class="form-control number required">
                 </div>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">credit calculator </button>
+                <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog">
+                  
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">CPE cradit calculator</h4>
+                      </div>
+                      <div class="modal-body">
+                        <label style=" display: inline-block;
+                        max-width: 100%;
+                        margin-bottom: 5px;
+                        font-weight: 700;">Actual audio/video duration time(in minute)</label><br>
+                        <input type="number" name="minute" id="minute" style=" width:100%" placeholder="Actual audio/video duration time(in minute)"></br>
+                        <label style=" display: inline-block;
+                        max-width: 100%;
+                        margin-bottom: 5px;
+                        font-weight: 700;">No of questions</label><br>
+                         <input type="number" name="question" id="question" style=" width:100% " placeholder="No of questions"></br>
+                         <label style=" display: inline-block;
+                         max-width: 100%;
+                         margin-bottom: 5px;
+                         font-weight: 700;">CPA Credit</label><br>
+                          <input type="text" name="total_cpa_credit_cal" id="total_cpa_credit_cal" style=" width:100%" style=" width:100%" id="total_cpa_credit_cal" readonly placeholder="0"><br> 
+                      </div>
+                      <button type="button" class="btn btn-primary ml-3" onclick="calculate()">Calculate</button>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+                
                 <div class="col-md-6">
                   <label class="control-label"> Instructional Method <span aria-required="true" class="requireds"> * </span></label>
                   <select name="Instructional_method" id="Instructional_method" class="form-control" required="required">
@@ -234,10 +280,39 @@
                     <label class="control-label"> Frequently Asked Questions <span aria-required="true"> </span></label>
                     <textarea id="faq_1" name="faq_1" class="form-control"></textarea>
                   </div>
-                  <!--<div class="form-group"> 
-                      <textarea id="faq_2" name="faq_2" class="form-control"></textarea>
-                    </div> 
-                    <div class="form-group"> 
+                  <div class="col-md-12">
+                    <h1>Sponsor Questions</h1>
+                  </div>
+
+                  <div class="form-group"> 
+                      <label class="control-label"> Question <span aria-required="true" class="requireds"> * </span></label>
+                      <textarea id="faq_2" name="faq_2" class="form-control" style="width:49%"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="control-label"> Option A <span aria-required="true" class="requireds"> * </span></label>
+                          <input type="text" minlength="2" maxlength="255" placeholder="" required="required" name="option_a" id="option_a" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="control-label"> Option B <span aria-required="true" class="requireds"> * </span></label>
+                            <input type="text" minlength="2" maxlength="255" placeholder="" required="required" name="option_b" id="option_b" class="form-control">
+                          </div>
+                        </div>  
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="control-label"> Option C <span aria-required="true" class="requireds"> * </span></label>
+                              <input type="text" minlength="2" maxlength="255" placeholder="" required="required" name="option_c" id="option_c" class="form-control">
+                            </div>
+                          </div> 
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="control-label"> Option D <span aria-required="true" class="requireds"> * </span></label>
+                                <input type="text" minlength="2" maxlength="255" placeholder="" required="required" name="option_d" id="option_d" class="form-control">
+                              </div>
+                            </div> 
+                   <!-- <div class="form-group"> 
                       <textarea id="faq_3" name="faq_3" class="form-control" ></textarea>
                     </div> 
                     <div class="form-group"> 
@@ -501,5 +576,16 @@
 		});
 	}
 
+
 </script> 
+<script type="text/javascript">
+///Calculate Pop Up//
+function calculate() {
+        var minute = document.getElementById('minute').value;
+        var question = document.getElementById('question').value;
+        var total = document.getElementById('total_cpa_credit_cal');
+        var result = minute * question;
+        total.value = result;
+    }
+</script>
 @endSection 

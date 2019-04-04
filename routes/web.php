@@ -530,11 +530,14 @@ Route::group(['middleware' => 'disablepreventback'],function(){
 			//Route::get('course-create-webinar-attendees/{id}', 'CourseController@CreateAttendees')->name('course-create-webinar-attendees');
 			
 			// Pdf controller
-			Route::get('generate-pdf','PdfController@generatePDF');
-			
+            Route::get('generate-pdf','PdfController@generatePDF');
+          
+          
 			/////////////////////////j page ma login required hoy ae aama mukava ----- START
 			Route::group(array('middleware'=>'checkClient'), function() {
-				Route::get('register', 'ClientController@register')->name('client.register');
+                Route::get('register', 'ClientController@register')->name('client.register');
+              
+              
 				Route::get('forgot-password', 'ClientController@forgotpassword')->name('client.forgotpassword');
 				
 				//Course Controller
@@ -542,11 +545,18 @@ Route::group(['middleware' => 'disablepreventback'],function(){
 				//Speaker Controller
 				Route::get('speaker-follow', 'SpeakerController@speakerFollow')->name('speaker.follow');
 			});
-			////////////////////////////////////j page ma login required hoy ae aama mukava--------- END
+            ////////////////////////////////////j page ma login required hoy ae aama mukava--------- END
+           
+            Route::get('become-speaker', function()
+           {
+                $data = ['title' => 'Welcome to mycpa'];
+
+                return view('user.client.become-speaker',$data);
+           });
         });
 	});
 
-
+   
 
 	
 	/////////////////////////ComingSoon Front///////////////////////////////
@@ -574,7 +584,7 @@ Route::group(['middleware' => 'disablepreventback'],function(){
 			////////////////////////////////////j page ma login required hoy ae aama mukava--------- END
         });
 	}); 
-
+  
 
 Route::get('/speakers/add', 'SpeakerController@create')->name('create.speaker');
 Route::post('/speakers/add', 'SpeakerController@store')->name('store.speaker');

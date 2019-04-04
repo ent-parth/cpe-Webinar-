@@ -39,10 +39,8 @@ class AccountsController extends Controller
         }
     }
 
-    public function showEditForm()
-    {
+    public function showEditForm() {
         config(['app.name' => 'Edit Profile']);
-
         return view('backEnd.accounts.edit_profile');
     }
 
@@ -144,4 +142,5 @@ class AccountsController extends Controller
 
         return $flag;
     }
+    
 }

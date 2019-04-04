@@ -70,8 +70,7 @@ class Administrator extends Authenticatable {
      *
      * @param type $password
      */
-   public function setPasswordAttribute($password)
-   {
+   public function setPasswordAttribute($password){
        if (isset($password)) {
            $this->attributes['password'] = bcrypt($password);
        }
@@ -95,7 +94,7 @@ class Administrator extends Authenticatable {
      * @param type $query
      * @return type Illuminate\Support\Collection
      */
-    public static function getAdministratorPermission($administratorId = null) {
-        return Administrator::with('permissions')->findOrFail($administratorId)->toArray();
+    public static function getAdministratorPermission($administratorId = null) { 
+        return Administrator::findOrFail($administratorId)->toArray();
     }
 }

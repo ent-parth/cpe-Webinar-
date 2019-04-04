@@ -22,8 +22,7 @@ class SpeakerController extends BaseController
      *
      * @return \Illuminate\Http\Response
     */
-    public function signup(Request $request)
-    {
+    public function signup(Request $request){
         $sucess_msg = "";
         $requestData = $request->all();
         if(count($requestData))

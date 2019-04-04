@@ -25,7 +25,7 @@ class PermissionHelper
             } else {
                 $permissionData = Administrator::getAdministratorPermission($administratorId[count($administratorId) - 1]);
                 return self::addCache($key, $permissionData);
-            }
+            } 
         }
 
         return false;

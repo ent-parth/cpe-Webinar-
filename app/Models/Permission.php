@@ -13,7 +13,7 @@ class Permission extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'parent_id', 'name', 'permission_key', 'status'
+        'id', 'parent_id', 'name', 'display_name', 'permission_key', 'status'
     ];
 
     public function scopeActive($query)
@@ -53,8 +53,7 @@ class Permission extends Model
 
     public static function getPermission()
     {
-        return Permission::with('childrens')->whereHas('childrens')
-                        ->active()
+        return Permission::active()
                         ->orderBy('name', 'ASC')
                         ->get()->toArray();
     }

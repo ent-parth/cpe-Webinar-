@@ -15,7 +15,6 @@ Route::get('/welcome', function () {
    return view('welcome');
 });
 
-
 Route::group(['middleware' => 'disablepreventback'],function(){
     function commonRoutes()
     {
@@ -47,9 +46,34 @@ Route::group(['middleware' => 'disablepreventback'],function(){
             Route::get('/logout', 'AdminAuth\LoginController@logout')->name('administrator.logout');
             //notification
             Route::get('/admin_notification', 'AdminNotificationController@admin_notification')->name('administrator.admin_notification');
+                
+            // UserManagement  
+            Route::get('/user_management','UserManagementController@userList');  
+            //
 
-            
-			// Roles
+            Route::get('/new_administrator','UserManagementController@addAdministratorFrm');
+            Route::post('/new_administrator','UserManagementController@saveAdministratorFrm');
+            Route::get('/new_administrator/{id}','UserManagementController@addAdministratorFrm');  
+            Route::post('/new_administrator/{id}','UserManagementController@saveAdministratorFrm');
+            Route::get('/removeAdministrator/{id}','UserManagementController@removeAdministrator');  
+
+            Route::get('/role_management','UserManagementController@role_form'); 
+            Route::get('/role_management/{id}','UserManagementController@role_form'); 
+            Route::post('/role_management','UserManagementController@saverole'); 
+            Route::post('/role_management/{id}','UserManagementController@saverole');  
+            Route::get('/role_list','UserManagementController@rolelist'); 
+            Route::get('/remove_role/{id}','UserManagementController@removeRole');
+
+            Route::get('/permission_management','UserManagementController@permission_list'); 
+            Route::get('/new_permission','UserManagementController@permissionFrm'); 
+            Route::post('/new_permission','UserManagementController@savePermission'); 
+
+            Route::get('/edit_permission/{id}','UserManagementController@permissionFrm'); 
+            Route::post('/edit_permission/{id}','UserManagementController@savePermission');
+
+            Route::get('/remove_permission/{id}','UserManagementController@removePermission');
+    
+    		// Roles
             Route::get('/roles', 'RoleController@index')->name('roles');
             Route::post('/roles/get-list', 'RoleController@getList')->name('roles-list');
             Route::get('/roles/add', 'RoleController@add')->name('add-role')->middleware('check-permission:manage-roles|add-role');
@@ -119,8 +143,8 @@ Route::group(['middleware' => 'disablepreventback'],function(){
             Route::post('/speakers/get-list', 'SpeakerController@getList')->name('speakers-list')->middleware('permission:speaker_view');
             // Route::get('/speakers/add', 'SpeakerController@create')->name('create.speaker')->middleware('check-permission:manage-speakers')->middleware('permission:speaker_view');
             // Route::post('/speakers/add', 'SpeakerController@store')->name('store.speaker')->middleware('check-permission:manage-speakers')->middleware('permission:speaker_view');
-            Route::get('/speakers/edit/{id}', 'SpeakerController@edit')->name('edit.speaker')->middleware('permission:speaker_edit');
-            Route::post('/speakers/edit/{id}', 'SpeakerController@update')->name('update.speaker')->middleware('permission:speaker_edit');
+            Route::get('/speakers/edit', 'SpeakerController@edit')->name('edit.speaker')->middleware('permission:speaker_edit');
+            Route::post('/speakers/edit', 'SpeakerController@update')->name('update.speaker')->middleware('permission:speaker_edit');
             Route::get('/speakers/view/{id}', 'SpeakerController@show')->name('show.speaker')->middleware('permission:speaker_view');
             Route::get('/speakers/delete/{id}', 'SpeakerController@destroy')->name('delete.speaker')->middleware('permission:speaker_delete');
             Route::post('/speakers/delete-all', 'SpeakerController@destroyAll')->name('delete-all.speaker')->middleware('permission:speaker_delete');
@@ -469,8 +493,8 @@ Route::group(['middleware' => 'disablepreventback'],function(){
             // Accounts
             Route::group(['namespace' => 'Company'], function() {
                 Route::get('/dashboard', 'AccountsController@dashboard')->name('company.dashboard');
-                Route::get('/edit-profile', 'AccountsController@edit')->name('company-edit');
-                Route::post('/edit-profile', 'AccountsController@update')->name('company-edit-profile');
+                Route::get('/edit-profile/{id}', 'AccountsController@edit')->name('company-edit');
+                Route::post('/edit-profile/{id}', 'AccountsController@update')->name('company-edit-profile');
             });
 			
             Route::get('/logout', 'CompanyAuth\LoginController@logout')->name('company.logout');
@@ -539,7 +563,7 @@ Route::group(['middleware' => 'disablepreventback'],function(){
 				//Course Controller
 				Route::get('course-like', 'CourseController@webinarLike')->name('course.like');
 				//Speaker Controller
-				Route::get('speaker-follow', 'SpeakerController@speakerFollow')->name('speaker.follow');
+                Route::get('speaker-follow', 'SpeakerController@speakerFollow')->name('speaker.follow');
 			});
 			////////////////////////////////////j page ma login required hoy ae aama mukava--------- END
         });
@@ -575,19 +599,10 @@ Route::group(['middleware' => 'disablepreventback'],function(){
 	}); 
 
 
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/speakers/add', 'SpeakerController@create')->name('create.speaker');
 Route::post('/speakers/add', 'SpeakerController@store')->name('store.speaker');
 Route::post('/states/get-state', 'StateController@getState')->name('get_state.state');
 Route::post('/cities/get-city', 'CityController@getCity')->name('delete.city');
 Route::post('/speakers/check_email', 'SpeakerController@checkEmail')->name('checkemail.speaker');
+
+

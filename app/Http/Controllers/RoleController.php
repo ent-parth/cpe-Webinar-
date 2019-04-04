@@ -229,9 +229,10 @@ class RoleController extends Controller
         // Get the all permission
         $permission = Permission::getPermission();
         // Get the all role wise permission
+ 
         $selectRolePermission = PermissionHelper::getPermission(config('constants.ROLE_PERMISSION.ROLE_PERMISSION_KEY') . $id);
         config(['app.name' => 'Manage Permission']);
-
+        
         return view('backEnd.roles.createPermissions', compact('permission', 'selectRolePermission'));
     }
 

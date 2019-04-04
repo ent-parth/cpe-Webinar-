@@ -16,7 +16,7 @@
                         <h6 class="mb-0 font-weight-semibold">
                             Manage Permissions
                         </h6>                        
-                    </div>
+                    </div> 
                     @if($permission)
                     <div class="card-group-control card-group-control-left" id="accordion-control">
                         @foreach($permission as $key => $value)
@@ -64,7 +64,7 @@
                     @endif                    
                     {!! Form::close() !!}
                 </div>
-            </div>            
+            </div>             
         </div>        
     </div>
 </div>

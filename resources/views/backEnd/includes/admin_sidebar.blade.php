@@ -18,13 +18,43 @@ $sidebarMenus = [
         'permissionKey' => [],
         'icon' => 'fa fa-table'
     ],
-    'administrators' => [
+  /*  'administrators' => [
         'text' => 'Administrators',
         'icon' => 'icon-sub-admins',
         'routeName' => 'administrators',
         'menuName' => 'administrators',
         'permissionKey' => [],
+    ],  */
+	 
+	'access_management' => [
+        'text' => 'Access Management',
+        'permissionKey' => [],
+        'icon' => 'icon-add',
+        'subMenu' => [ 
+        	'user_management' => [
+                'icon' => 'icon-user',
+                'text' => 'User Management',
+                'routeName' => 'user_management',
+                'menuName' => 'user_management',
+                'permissionKey' => [],
+            ],
+			'role_management' => [
+                'icon' => 'icon-earth',
+                'text' => 'Role Management', 
+                'routeName' => 'role_management', 
+                'menuName' => 'role_management',
+                'permissionKey' => ['permission_role-'], 
+            ],
+			'permission_management' => [
+                'icon' => 'icon-pencil',
+                'text' => 'Permission Management',
+                'routeName' => 'permission_management', 
+                'menuName' => 'permission_management', 
+                'permissionKey' => [], 
+            ],
+        ],
     ],
+	
     /*
     'users' => [
         'text' => 'messages.users',
@@ -278,9 +308,8 @@ $sidebarMenus = [
     <!-- <li class="header">MAIN NAVIGATION</li> -->
     <!-- Main -->
     <?php
-    foreach ($sidebarMenus as $key => $menu) {
-        ?>
-        <?php if (empty($menu['permissionKey']) || \App\Helpers\PermissionHelper::hasAccess($menu['permissionKey'])) { ?>
+    foreach ($sidebarMenus as $key => $menu) {   ?>
+        <?php if (empty($menu['permissionKey']) || \App\Helpers\PermissionHelper::hasAccess($menu['permissionKey'])){ ?> 
             <li class="<?php echo ($key == $activeSidebarMenu) ? 'active' : ''; ?> <?php echo (!empty($menu['subMenu'])) ? 'treeview' : ''; ?> <?php echo ($key == $activeSidebarSubMenu) ? "menu-open" : ""; ?>">
                 <a href="<?php echo (!empty($menu['routeName'])) ? route($menu['routeName']) : 'javascript:void(0);'; ?>">
                     <i class="<?= $menu['icon']; ?>"></i> <span>{{__($menu['text']) }}</span>
@@ -288,21 +317,27 @@ $sidebarMenus = [
 	                    <span class="pull-right-container">
 	                      <i class="fa fa-angle-left pull-right"></i>
 	                    </span>
-	                <?php } ?>
+	                <?php }  ?>
                 </a>
-                <?php if (!empty($menu['subMenu'])) { ?>
+                <?php  if (!empty($menu['subMenu'])) {  ?>
                     <ul class="treeview-menu">
-                        <?php foreach ($menu['subMenu'] as $subMenukey => $subMenu) { ?>
+                        <?php foreach ($menu['subMenu'] as $subMenukey => $subMenu) {  ?>
                         <li class="<?php echo ($subMenukey == $activeSidebarSubMenu) ? 'active' : ''; ?>">
-                            <a href="<?php echo (!empty($subMenu['routeName'])) ? route($subMenu['routeName']) : 'javascript:void(0);'; ?>">
+                            <?php if($subMenu['routeName'] != "user_management" && $subMenu['routeName'] != "role_management" && $subMenu['routeName'] != "permission_management"){ ?>
+                            <a href="<?php echo (!empty($subMenu['routeName'])) ? route($subMenu['routeName']) : 'javascript:void(0);'; ?>"> 
                                 <i class="<?= $subMenu['icon']; ?>"></i> {{__($subMenu['text']) }}
                             </a>
+                        <?php }else{ ?>
+                            <a href="<?php echo (!empty($subMenu['routeName'])) ? URL::to($subMenu['routeName']) : 'javascript:void(0);'; ?>">  
+                                <i class="<?= $subMenu['icon']; ?>"></i> {{__($subMenu['text']) }}
+                            </a>
+                        <?php } ?>
                         </li>
-                <?php } ?>
+                    <?php }  ?> 
                 	</ul>
-                <?php } ?>
+                <?php }  ?>   
             </li>
-        <?php }
+        <?php  } 
     } ?>
   </ul>
 </section>
